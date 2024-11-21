@@ -1,24 +1,22 @@
-const user = {
-  name: "Jonathan",
-  imageUrl: "https://i.imgur.com/yXOvdOSs.jpg",
-  imageSize: 90,
-};
+const alumnos = [
+  { name: "Jonathan", isAlumn: true, id: 1 },
+  { name: "Ever", isAlumn: false, id: 2 },
+  { name: "Jorge", isAlumn: true, id: 3 },
+];
 
 function App() {
-  return (
-    <>
-      <h1>{user.name}</h1>
-      <img
-        className="img-thumbnail"
-        src={user.imageUrl}
-        alt={"Foto de " + user.name}
-        style={{
-          width: user.imageSize,
-          height: user.imageSize,
-        }}
-      />
-    </>
-  );
+  const listAlumnos = alumnos.map((alumno) => (
+    <li
+      key={alumno.id}
+      style={{
+        color: alumno.isAlumn ? "darkgreen" : "darkred",
+      }}
+    >
+      {alumno.name}
+    </li>
+  ));
+
+  return <ul>{listAlumnos}</ul>;
 }
 
 export default App;
