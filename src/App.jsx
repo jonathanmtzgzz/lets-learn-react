@@ -1,9 +1,20 @@
-function App() {
-  function handleClick() {
-    alert("Me hiciste click");
-  }
+import { useState } from "react";
 
-  return <button onClick={handleClick}>Hazme clic</button>;
+export default function MyApp() {
+  return (
+    <div>
+      <MyButton />
+      <MyButton />
+    </div>
+  );
 }
 
-export default App;
+function MyButton() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return <button onClick={handleClick}>Hiciste clic {count} veces</button>;
+}
