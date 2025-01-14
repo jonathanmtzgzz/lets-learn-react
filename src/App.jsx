@@ -1,29 +1,62 @@
-const baseUrl = "https://i.imgur.com/";
-const person = {
-  name: "Gregorio Y. Zara",
-  imageId: "7vQD0fP",
-  imageSize: "s",
-  theme: {
-    backgroundColor: "black",
-    color: "pink",
-  },
-};
+import { getImageUrl } from "./utils.jsx";
 
-export default function App() {
-  const name = "Hedy Lamarr";
+function Profile({
+  imageId,
+  name,
+  profession,
+  awards,
+  discovery,
+  imageSize = 70,
+}) {
   return (
-    <div style={person.theme}>
-      <h1>Tareas pendientes de {person.name}</h1>
+    <section className="profile">
+      <h2>{name}</h2>
       <img
         className="avatar"
-        src={baseUrl + person.imageId + person.imageSize + ".jpg"}
-        alt={person.name}
+        src={getImageUrl(imageId)}
+        alt={name}
+        width={imageSize}
+        height={imageSize}
       />
       <ul>
-        <li>Mejorar el videoteléfono</li>
-        <li>Preparar clases de aeronáutica</li>
-        <li>Trabajar en el motor de alcohol</li>
+        <li>
+          <b>Profesión:</b> {profession}
+        </li>
+        <li>
+          <b>Premios: {awards.length} </b>({awards.join(", ")})
+        </li>
+        <li>
+          <b>Descubrió: </b>
+          {discovery}
+        </li>
       </ul>
+    </section>
+  );
+}
+
+export default function Gallery() {
+  return (
+    <div>
+      <h1>Científicos Notables</h1>
+      <Profile
+        imageId="szV5sdG"
+        name="Maria Skłodowska-Curie"
+        profession="física y química"
+        discovery="polonio (elemento químico)"
+        awards={[
+          "Premio Nobel de Física",
+          "Premio Nobel de Química",
+          "Medalla Davy",
+          "Medalla Matteucci",
+        ]}
+      />
+      <Profile
+        imageId="YfeOqp2"
+        name="Katsuko Saruhashi"
+        profession="geoquímico"
+        discovery="un método para medir el dióxido de carbono en el agua de mar"
+        awards={["Premio Miyake de geoquímica", "Premio Tanaka"]}
+      />
     </div>
   );
 }
